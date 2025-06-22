@@ -14,6 +14,6 @@ public class MessageProducerService {
     }
 
     public void sendMessage(String message) {
-        rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_NAME, message);
+        rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE, RabbitMQConfig.ROUTING_KEY, message);
     }
 }
