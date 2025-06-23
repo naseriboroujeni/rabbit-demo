@@ -13,7 +13,23 @@ public class MessageProducerService {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void sendMessage(String message) {
-        rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE, RabbitMQConfig.ROUTING_KEY, message);
+    public void sendMessage(String message, int queueNumber) {
+        switch (queueNumber) {
+            case 1 -> sendMessageToQueueOne(message);
+            case 2 -> sendMessageToQueueTwo(message);
+            default -> sendMessageFanOut(message);
+        }
+    }
+
+    private void sendMessageToQueueOne(String message) {
+        rabbitTemplate.convertAndSend(RabbitMQConfig.DIRECT_EXCHANGE, RabbitMQConfig.ROUTING_KEY_1, message);
+    }
+
+    private void sendMessageToQueueTwo(String message) {
+        rabbitTemplate.convertAndSend(RabbitMQConfig.DIRECT_EXCHANGE, RabbitMQConfig.ROUTING_KEY_2, message);
+    }
+
+    private void sendMessageFanOut(String message) {
+        rabbitTemplate.convertAndSend(RabbitMQConfig.FANOUT_EXCHANGE, "", message);
     }
 }

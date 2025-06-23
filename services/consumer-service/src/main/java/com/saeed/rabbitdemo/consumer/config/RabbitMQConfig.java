@@ -7,10 +7,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    public static final String QUEUE_NAME = "testQueue";
-
-    @Bean
-    public Queue exampleQueue() {
-        return new Queue(QUEUE_NAME, false);
-    }
+    public static final String QUEUE_ONE = "queue.one";
+    public static final String QUEUE_TWO = "queue.two";
 }

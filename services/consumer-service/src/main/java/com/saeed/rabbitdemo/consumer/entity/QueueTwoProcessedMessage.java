@@ -7,12 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "processed_messages")
+@Table(name = "queue_two_processed_messages")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class ProcessedMessage {
+public class QueueTwoProcessedMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -15,8 +15,8 @@ public class MessageController {
     }
 
     @PostMapping("/send")
-    public String sendMessage(@RequestParam String message) {
-        messageProducerService.sendMessage(message);
+    public String sendMessage(@RequestParam String message, @RequestParam(required = false, defaultValue = "0") int queueNumber) {
+        messageProducerService.sendMessage(message, queueNumber);
         return "Message sent: " + message;
     }
 }
